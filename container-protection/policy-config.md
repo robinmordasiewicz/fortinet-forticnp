@@ -1,11 +1,11 @@
 +++
 archetype = "post"
-title = "Dashboard"
-weight = 1
+title = "Policy Config"
+weight = 3
 +++
 
-Dashboard
-=========
+Policy Config
+=============
 
 You can see really fancy graphs
 
@@ -16,3 +16,4 @@ Third Section
 ~~~~~~~~~~~~~~
 
 follow me
+

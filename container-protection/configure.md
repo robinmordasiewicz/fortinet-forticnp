@@ -1,10 +1,10 @@
 +++
 archetype = "post"
-title = "Dashboard"
-weight = 1
+title = "Configure"
+weight = 4
 +++
 
-Dashboard
+Configure
 =========
 
 You can see really fancy graphs
@@ -16,3 +16,4 @@ Third Section
 ~~~~~~~~~~~~~~
 
 follow me
+

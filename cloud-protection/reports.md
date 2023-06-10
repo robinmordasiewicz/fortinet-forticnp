@@ -1,11 +1,11 @@
 +++
 archetype = "post"
-title = "Dashboard"
-weight = 1
+title = "Reports"
+weight = 3
 +++
 
-Dashboard
-=========
+Reports
+=======
 
 You can see really fancy graphs
 

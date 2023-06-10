@@ -1,11 +1,11 @@
 +++
 archetype = "post"
-title = "Dashboard"
-weight = 1
+title = "Policies"
+weight = 4
 +++
 
-Dashboard
-=========
+Policies
+========
 
 You can see really fancy graphs
 

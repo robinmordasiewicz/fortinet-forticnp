@@ -1,11 +1,11 @@
 +++
 archetype = "post"
-title = "Dashboard"
+title = "Overview"
 weight = 1
 +++
 
-Dashboard
-=========
+Overview
+========
 
 You can see really fancy graphs
 
@@ -16,3 +16,4 @@ Third Section
 ~~~~~~~~~~~~~~
 
 follow me
+

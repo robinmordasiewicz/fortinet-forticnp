@@ -1,10 +1,10 @@
 +++
 archetype = "post"
-title = "Dashboard"
-weight = 1
+title = "FortiView"
+weight = 2
 +++
 
-Dashboard
+FortiView
 =========
 
 You can see really fancy graphs
@@ -16,3 +16,4 @@ Third Section
 ~~~~~~~~~~~~~~
 
 follow me
+
