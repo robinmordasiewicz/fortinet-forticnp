@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "Container Protection"
-weight = 4
+weight = 2
 +++
 
-Lorem Ipsum.
+Those pesky containers

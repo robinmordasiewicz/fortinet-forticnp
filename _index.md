@@ -1,3 +1,9 @@
++++
+archetype = "home"
+title = "FortiCNP"
+weight = 1
++++
+
 An h1 header
 ============
 
