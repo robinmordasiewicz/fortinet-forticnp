@@ -7,8 +7,8 @@ weight = 1
 FortiCNP Login
 ==============
 
-1. Using a Browser open URL https://support.fortinet.com
+1. Using a browser, login to FortiCloud at: https://support.fortinet.com
 
-1. Log into FortiCloud and select FortiCNP
+1. After logging into FortiCloud, select Services -> Show More -> FortiCNP.
 
 ![image info](forticloud-forticnp-login.gif)
