@@ -4,9 +4,9 @@ title = "Cloud Protection"
 weight = 1
 +++
 
-Cloud Protection
-================
+FortiCNP has two main contexts, labelled "Cloud Protection" and "Container Protection".
 
-FortiCNP has two main contexts, cloud and container protection.
+Select the "Cloud Protection" button in the navigation pane to switch in the "Cloud Protection" context.
 
-Select the "Cloud Protection" button in the navigation pane to switch in the cloud protection context.
+![image info](forticnp-cloud-protection.gif)
+
