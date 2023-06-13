@@ -4,9 +4,6 @@ title = "Dashboard"
 weight = 1
 +++
 
-Dashboard
-=========
-
 ![image info](forticnp-cloud-protection-dashboard.gif)
 
 The "Cloud Protection" Dashboard provides a "Risk Overview" aggregate view across AWS, Azure, and Google Cloud.
