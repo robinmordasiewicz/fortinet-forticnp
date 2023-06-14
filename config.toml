@@ -1,9 +1,0 @@
-baseURL = "https://robinmordasiewicz.github.io/"
-title = "Fortinet Cloud Native Protection"
-
-[params]
-  editURL = "https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/edit/main/content/"
-  logoBannerText="Custom Logo Banner"
-  logoBannerSubText="sample sub-banner text"
-  author = "Robin Mordasiewicz"
-  description = "Fortinet Cloud Native Protection Presentation"

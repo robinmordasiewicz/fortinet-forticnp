@@ -52,6 +52,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: content
+      - name: Copy Local Config
+        run: cp content/config.toml config/_default/
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
