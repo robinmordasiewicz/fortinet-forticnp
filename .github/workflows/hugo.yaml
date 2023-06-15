@@ -54,7 +54,7 @@ jobs:
           path: content
       - name: Copy Local Config
         run: cp content/config.toml config/_default/
-      - name: Setup Pages
+      - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
       - name: Install Node.js dependencies
