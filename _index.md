@@ -2,6 +2,7 @@
 archetype = "home"
 title = "FortiCNP"
 weight = 1
+GHissueID = 1
 +++
 
 ![image info](forticloud-forticnp-login.gif)
