@@ -16,6 +16,5 @@ https://robinmordasiewicz.github.io/fortinet-forticnp-hugo-md/
 To use discussions enable Giscus: https://giscus.app
 
 ```
-
-[![Deploy to GitHub Pages](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/deploy.yaml/badge.svg)](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/deploy.yaml)
+[![GitHub Pages](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/deploy.yaml/badge.svg)](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/deploy.yaml)
 
