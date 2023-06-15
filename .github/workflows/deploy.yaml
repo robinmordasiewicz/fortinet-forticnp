@@ -54,16 +54,12 @@ jobs:
           repository: robinmordasiewicz/fortinet-hugo-theme
           submodules: recursive
           fetch-depth: 0
-      - name: Populate hugo config with GitHub variables
-        run: |
-          title=${{ github.event.repository.description }}
-          echo "title = \"${title}\"" > config/_default/hugo.toml
       - name: Checkout Content
         uses: actions/checkout@v3
         with:
           path: content
       - name: Copy Local Config
-        run: cat content/config.toml >> config/_default/hugo.toml
+        run: cp content/config.toml config/_default/hugo.toml
       - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
