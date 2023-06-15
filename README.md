@@ -1,3 +1,4 @@
+# Hugo Site
 
 ```
 git clone https://github.com/robinmordasiewicz/fortinet-hugo-theme.git
