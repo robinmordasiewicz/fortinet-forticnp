@@ -38,14 +38,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.111.3
+      HUGO_VERSION: 0.113.0
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
-      - name: Print value
-        run: |
-          baseURL=${{ github.event.repository.homepage }}
-          echo "baseURL = ${baseURL}" > config/_default/hugo.toml
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
@@ -58,6 +54,10 @@ jobs:
           repository: robinmordasiewicz/fortinet-hugo-theme
           submodules: recursive
           fetch-depth: 0
+      - name: Populate hugo config with GitHub variables
+        run: |
+          title=${{ github.event.repository.description }}
+          echo "title = \"${title}\"" > config/_default/hugo.toml
       - name: Checkout Content
         uses: actions/checkout@v3
         with:
@@ -78,7 +78,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
+            --baseURL "${{ github.event.repository.homepage }}/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
