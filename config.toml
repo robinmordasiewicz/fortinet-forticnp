@@ -1,4 +1,4 @@
-baseURL = "https://robinmordasiewicz.github.io/fortinet-forticnp-hugo-md/"
+# baseURL = "https://robinmordasiewicz.github.io/fortinet-forticnp-hugo-md/"
 title = "Fortinet Cloud Native Protection"
 
 [[menu.shortcuts]]
