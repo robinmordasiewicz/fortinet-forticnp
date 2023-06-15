@@ -15,4 +15,4 @@ https://robinmordasiewicz.github.io/fortinet-forticnp-hugo-md/
 
 ```
 
-![example workflow](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/docs/actions/workflows/main.yml/badge.svg)
+[![.github/workflows/hugo.yaml](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/hugo.yaml/badge.svg)](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/hugo.yaml)
