@@ -30,8 +30,8 @@ weight = 4
   [comments.giscus]
     repo = "robinmordasiewicz/fortinet-forticnp-hugo-md"
     repo_id = "R_kgDOJtuM1w"
-    category = "General"
-    category_id = "DIC_kwDOJtuM184CXPYd"
+    category = "Announcements"
+    category_id = "DIC_kwDOJtuM184CXPYc"
     mapping = "pathname"
     label = "comment"
     theme = "light"
