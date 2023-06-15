@@ -17,4 +17,5 @@ To use discussions enable Giscus: https://giscus.app
 
 ```
 
-[![.github/workflows/hugo.yaml](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/hugo.yaml/badge.svg)](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/hugo.yaml)
+[![Deploy to GitHub Pages](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/deploy.yaml/badge.svg)](https://github.com/robinmordasiewicz/fortinet-forticnp-hugo-md/actions/workflows/deploy.yaml)
+
