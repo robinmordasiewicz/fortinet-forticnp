@@ -55,12 +55,13 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb && rm gifski_1.11.0_amd64.deb
       - name: Mov files to convert
-          run: |
-            IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
-            for i in "${myarray[@]}"; do
-              echo "Value: ${i}"
-              echo "Value: ${i%.*}"
-            done
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
+          for i in "${myarray[@]}"; do
+            echo "Value: ${i}"
+            echo "Value: ${i%.*}"
+          done
       - name: Create gifs from mov
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
