@@ -42,16 +42,14 @@ jobs:
         run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
       - name: Checkout Content
         uses: actions/checkout@v3
-      - name: Get all changed .js file(s) or any file in the static folder excluding the docs folder
-        id: changed-files-excluded
+      - name: Get all changed .mov
+        id: changed-files-specific
         uses: tj-actions/changed-files@v36
         with:
-          files: |
-            **.mov
-
-      - name: Run step if any .mov files
-        if: steps.changed-files-excluded.outputs.any_changed == 'true'
+          separator: ","
+          files: **.mov
+      - name: Create gifs from mov
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          echo "One or more .js file(s) or any file in the static folder but not in the doc folder has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files-excluded.outputs.all_changed_files }}"
+          echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
 
