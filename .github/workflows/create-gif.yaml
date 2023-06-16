@@ -39,11 +39,15 @@ jobs:
         uses: hmarr/debug-action@v2
       - name: Setup FFmpeg
         uses: FedericoCarboni/setup-ffmpeg@v2
+      - name: Install gifski
+        run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
       - name: Checkout Content
         uses: actions/checkout@v3
-      - name: Convert mov to gif
+      - name: Reduce frame rate
         run: ffmpeg -y -i forticloud-forticnp-login.mov -filter:v fps=fps=15 forticloud-forticnp-login-fps.mov
-      - name: ls -al
-        run: ls -la 
+      - name: Create a border
+        run: ffmpeg -y -i forticloud-forticnp-login-fps.mov -pix_fmt yuv420p -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" forticloud-forticnp-login-fps-border.mov
+      - name: Convert to gif
+        run: gifski -Q 100 --fps 10 --width 1920 --repeat -1 -o forticloud-forticnp-login.gif forticloud-forticnp-login-fps-border.mov
       - name: git status
         run: git status
