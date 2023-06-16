@@ -36,12 +36,6 @@ jobs:
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
-      - name: Setup FFmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v2
-      - name: Install gifski
-        run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
-      - name: Checkout Content
-        uses: actions/checkout@v3
       - name: Get all changed .mov
         id: changed-files-specific
         uses: tj-actions/changed-files@v36
@@ -49,8 +43,17 @@ jobs:
           separator: ","
           files: |
             **.mov
+      - name: Setup FFmpeg
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: FedericoCarboni/setup-ffmpeg@v2
+      - name: Install gifski
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
+      - name: Checkout Content
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: actions/checkout@v3
       - name: Create gifs from mov
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
+          ffmpeg -y -i ${{ steps.changed-files-specific.outputs.all_changed_files }} -filter:v fps=10 tmpout.mov
 
