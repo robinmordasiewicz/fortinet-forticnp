@@ -12,9 +12,6 @@ on:
     branches:
       - main
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -46,9 +43,9 @@ jobs:
       - name: Checkout Content
         uses: actions/checkout@v3
       - name: Reduce frame rate
-        run: ffmpeg -y -i forticloud-forticnp-login.mov -filter:v fps=fps=15 forticloud-forticnp-login-fps.mov
+        run: ffmpeg -nostats -loglevel 0 -y -i forticloud-forticnp-login.mov -filter:v fps=fps=15 forticloud-forticnp-login-fps.mov
       - name: Create a border
-        run: ffmpeg -y -i forticloud-forticnp-login-fps.mov -pix_fmt yuv420p -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" forticloud-forticnp-login-fps-border.mov
+        run: ffmpeg -nostats -loglevel 0 -y -i forticloud-forticnp-login-fps.mov -pix_fmt yuv420p -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" forticloud-forticnp-login-fps-border.mov
       - name: Convert to gif
         run: gifski -q -Q 100 --lossy-quality 100 --fps 10 --width 1920 --repeat -1 -o forticloud-forticnp-login.gif forticloud-forticnp-login-fps-border.mov
       - name: git status
