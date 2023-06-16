@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
+      - name: Checkout Content
+        uses: actions/checkout@v3
       - name: Get all changed .mov
         id: changed-files-specific
         uses: tj-actions/changed-files@v36
@@ -49,9 +51,6 @@ jobs:
       - name: Install gifski
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
-      - name: Checkout Content
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
-        uses: actions/checkout@v3
       - name: Create gifs from mov
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
