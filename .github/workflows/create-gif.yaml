@@ -55,4 +55,12 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           ffmpeg -y -i ${{ steps.changed-files-specific.outputs.all_changed_files }} -filter:v fps=10 tmpout.mov
+          ffmpeg -y -i tmpout.mov -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" tmpout2.mov
+          rm tmpout.mov
+          mkdir tmp
+          ffmpeg -i tmpout2.mov tmp/frame%04d.png
+          rm tmpout2.mov
+          gifski --fps 10 --width 960 --repeat -1 -o ${{ steps.changed-files-specific.outputs.all_changed_files }}.gif tmp/frame*.png
+          rm -rf tmp/
+          git status
 
