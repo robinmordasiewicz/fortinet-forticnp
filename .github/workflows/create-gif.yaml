@@ -50,7 +50,7 @@ jobs:
         uses: FedericoCarboni/setup-ffmpeg@v2
       - name: Install gifski
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
+        run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb && rm gifski_1.11.0_amd64.deb
       - name: Create gifs from mov
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
@@ -62,5 +62,7 @@ jobs:
           rm tmpout2.mov
           gifski --fps 10 --width 960 --repeat -1 -o ${{ steps.changed-files-specific.outputs.all_changed_files }}.gif tmp/frame*.png
           rm -rf tmp/
-          git status
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.1.3
+
 
