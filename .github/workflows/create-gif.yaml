@@ -34,6 +34,9 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
     steps:
       - name: Debug
         uses: hmarr/debug-action@v2
@@ -48,6 +51,6 @@ jobs:
       - name: Create a border
         run: ffmpeg -y -i forticloud-forticnp-login-fps.mov -pix_fmt yuv420p -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" forticloud-forticnp-login-fps-border.mov
       - name: Convert to gif
-        run: gifski -Q 100 --fps 10 --width 1920 --repeat -1 -o forticloud-forticnp-login.gif forticloud-forticnp-login-fps-border.mov
+        run: gifski -q -Q 100 --lossy-quality 100 --fps 10 --width 1920 --repeat -1 -o forticloud-forticnp-login.gif forticloud-forticnp-login-fps-border.mov
       - name: git status
         run: git status
