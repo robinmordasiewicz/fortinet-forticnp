@@ -1,4 +1,4 @@
-name: GitHub-Pages
+name: create-gif
 
 on:
   pull_request:
