@@ -42,11 +42,16 @@ jobs:
         run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb
       - name: Checkout Content
         uses: actions/checkout@v3
-      - name: Reduce frame rate
-        run: ffmpeg -nostats -loglevel 0 -y -i forticloud-forticnp-login.mov -filter:v fps=fps=15 forticloud-forticnp-login-fps.mov
-      - name: Create a border
-        run: ffmpeg -nostats -loglevel 0 -y -i forticloud-forticnp-login-fps.mov -pix_fmt yuv420p -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" forticloud-forticnp-login-fps-border.mov
-      - name: Convert to gif
-        run: gifski -q -Q 100 --lossy-quality 100 --fps 10 --width 1920 --repeat -1 -o forticloud-forticnp-login.gif forticloud-forticnp-login-fps-border.mov
-      - name: git status
-        run: git status
+      - name: Get all changed .js file(s) or any file in the static folder excluding the docs folder
+        id: changed-files-excluded
+        uses: tj-actions/changed-files@v36
+        with:
+          files: |
+            **.mov
+
+      - name: Run step if any .mov files
+        if: steps.changed-files-excluded.outputs.any_changed == 'true'
+        run: |
+          echo "One or more .js file(s) or any file in the static folder but not in the doc folder has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files-excluded.outputs.all_changed_files }}"
+
