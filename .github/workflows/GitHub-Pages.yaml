@@ -65,6 +65,7 @@ jobs:
       - name: Copy Discussion Config
         run: cp content/params.toml config/_default/params.toml
       - name: Get all changed .mov
+        working-directory: ./content
         id: changed-files-specific
         uses: tj-actions/changed-files@v36
         with:
