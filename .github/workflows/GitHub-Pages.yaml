@@ -99,6 +99,11 @@ jobs:
             rm -rf tmp/
             git add "${i%.*}.gif"
           done
+      - name: Commit new gif
+        working-directory: ./content
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          git status
           git commit -m "updates"
           git push origin main
       - name: Setup Github Pages
