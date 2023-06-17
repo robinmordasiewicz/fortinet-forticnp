@@ -5,14 +5,12 @@ on:
   pull_request:
     paths-ignore:
       - "README.md"
-      - "**.mov"
       - "**.yaml"
     branches:
       - main
   push:
     paths-ignore:
       - "README.md"
-      - "**.mov"
       - "**.yaml"
     branches:
       - main
