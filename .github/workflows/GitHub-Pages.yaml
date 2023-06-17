@@ -105,7 +105,6 @@ jobs:
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
           for i in "${myarray[@]}"; do
-            echo "git add \"${i%.*}.gif\""
             git add "${i%.*}.gif"
           done
       - name: Commit new gif
@@ -114,6 +113,7 @@ jobs:
         run: |
           git diff-index HEAD
           git diff-index --quiet HEAD || git commit -m 'updates' && git push origin main
+          git git commit -m 'updates' && git push origin main
       - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
