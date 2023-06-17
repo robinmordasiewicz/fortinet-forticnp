@@ -22,7 +22,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -62,10 +62,44 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: content
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Copy Site Config
         run: cp content/config.toml config/_default/hugo.toml
       - name: Copy Discussion Config
         run: cp content/params.toml config/_default/params.toml
+      - name: Get all changed .mov
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v36
+        with:
+          separator: ","
+          files: |
+            **.mov
+      - name: Setup FFmpeg
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: FedericoCarboni/setup-ffmpeg@v2
+      - name: Install gifski
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb && rm gifski_1.11.0_amd64.deb
+      - name: convert .mov to .gif
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
+          for i in "${myarray[@]}"; do
+            echo "Value: ${i}"
+            echo "Value: ${i%.*}"
+            ffmpeg -y -i ${i} -filter:v fps=10 tmpout.mov
+            ffmpeg -y -i tmpout.mov -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" tmpout2.mov
+            rm tmpout.mov
+            mkdir tmp
+            ffmpeg -i tmpout2.mov tmp/frame%04d.png
+            rm tmpout2.mov
+            gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
+            rm -rf tmp/
+          done
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.1.3
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
       - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
