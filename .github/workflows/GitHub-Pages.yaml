@@ -84,6 +84,8 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           for i in "${myarray[@]}"; do
             echo "Value: ${i}"
             echo "Value: ${i%.*}"
@@ -95,21 +97,10 @@ jobs:
             rm tmpout2.mov
             gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
             rm -rf tmp/
-            echo "1"
-            sleep 2
-            echo "2"
-            sleep 2
-            echo "3"
-            sleep 2
-            echo "4"
-            git status
-            git config user.name "GitHub Actions Bot"
-            git config user.email "<>"
             git add "${i%.*}.gif"
-            git add .
-            git commit -m "updates"
-            git push origin main
           done
+          git commit -m "updates"
+          git push origin main
       - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
