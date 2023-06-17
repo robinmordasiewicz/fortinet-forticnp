@@ -5,13 +5,11 @@ on:
   pull_request:
     paths-ignore:
       - "README.md"
-      - "**.yaml"
     branches:
       - main
   push:
     paths-ignore:
       - "README.md"
-      - "**.yaml"
     branches:
       - main
 
@@ -80,6 +78,7 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: curl -sLO https://github.com/ImageOptim/gifski/releases/download/1.11.0/gifski_1.11.0_amd64.deb && sudo apt-get update && sudo apt install ./gifski_1.11.0_amd64.deb && rm gifski_1.11.0_amd64.deb
       - name: convert .mov to .gif
+        working-directory: ./content
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
@@ -96,8 +95,9 @@ jobs:
             rm -rf tmp/
           done
       - name: Add & Commit
-        uses: EndBug/add-and-commit@v9.1.3
         if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: EndBug/add-and-commit@v9.1.3
+        working-directory: ./content
       - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
