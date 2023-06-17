@@ -98,20 +98,13 @@ jobs:
             git rm "${i%.*}.gif"
             gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
             rm -rf tmp/
-            sleep 2
-            echo "1"
-            sleep 2
-            echo "2"
-            sleep 2
-            echo "3"
-            sleep 2
-            echo "4"
-            sleep 2
-            echo "5"
-            sleep 2
-            echo "git add -A"
-            git add -A
-            sleep 2
+          done
+      - name: Commit new files
+        working-directory: ./content
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
+          for i in "${myarray[@]}"; do
             echo "git add \"${i%.*}.gif\""
             git add "${i%.*}.gif"
           done
