@@ -108,13 +108,18 @@ jobs:
             echo "4"
             sleep 2
             echo "5"
+            sleep 2
+            echo "git add -A"
             git add -A
+            sleep 2
+            echo "git add \"${i%.*}.gif\""
             git add "${i%.*}.gif"
           done
       - name: Commit new gif
         working-directory: ./content
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
+          git diff-index HEAD
           git diff-index --quiet HEAD || git commit -m 'updates' && git push origin main
       - name: Setup Github Pages
         id: pages
