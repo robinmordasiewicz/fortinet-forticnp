@@ -95,10 +95,10 @@ jobs:
             mkdir tmp
             ffmpeg -i tmpout2.mov tmp/frame%04d.png
             rm tmpout2.mov
-            git rm "${i}"
+            git rm "${i%.*}.gif"
             gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
             rm -rf tmp/
-            git add "${i}"
+            git add "${i%.*}.gif"
           done
       - name: Commit new gif
         working-directory: ./content
