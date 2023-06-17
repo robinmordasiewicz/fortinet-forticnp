@@ -38,7 +38,7 @@ jobs:
       - name: Checkout Content
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Get all changed .mov
         id: changed-files-specific
