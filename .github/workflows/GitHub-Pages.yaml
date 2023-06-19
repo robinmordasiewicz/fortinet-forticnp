@@ -85,6 +85,7 @@ jobs:
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
           for i in "${myarray[@]}"; do
+            echo ""
             echo "Value: ${i}"
             echo "Value: ${i%.*}"
             ffmpeg -y -i ${i} -filter:v fps=10 tmpout.mov
