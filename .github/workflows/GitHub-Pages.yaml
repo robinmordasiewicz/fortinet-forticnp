@@ -100,9 +100,9 @@ jobs:
             ffmpeg  -i tmpout2.mov  -b:v 0  -crf 30  -pass 1  -an -f webm -y /dev/null
             ffmpeg  -i tmpout2.mov  -b:v 0  -crf 30  -pass 2  "${i%.*}.webm"
             git add -f "${i%.*}.webm"
-            rm tmpout2.mov
             mkdir tmp
             ffmpeg -i tmpout2.mov tmp/frame%04d.png
+            rm tmpout2.mov
             if [[ -f "${i%.*}.gif" ]]; then
               git config user.name "GitHub Actions Bot"
               git config user.email "<>"
