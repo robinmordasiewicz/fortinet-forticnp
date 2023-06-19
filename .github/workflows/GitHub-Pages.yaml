@@ -111,6 +111,9 @@ jobs:
         working-directory: ./content
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
+          pwd
+          git status
+          ls -al
           git diff-index HEAD
           git diff-index --quiet HEAD || git commit -m 'updates' && git push origin main
           git git commit -m 'updates' && git push origin main
