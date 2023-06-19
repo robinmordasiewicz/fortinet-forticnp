@@ -105,8 +105,8 @@ jobs:
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
           for i in "${myarray[@]}"; do
-            echo "git add \"${i%.*}.gif\""
-            git add "${i%.*}.gif"
+            echo "git add -f \"${i%.*}.gif\""
+            git add -f "${i%.*}.gif"
           done
       - name: Commit new gif
         working-directory: ./content
