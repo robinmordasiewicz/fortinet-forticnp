@@ -8,7 +8,7 @@ archetype="home"
 
 ![image info](forticloud-forticnp-login.webm)
 
-{{< video src="my-beautiful-screencast" >}}
+{{< video src="forticloud-forticnp-login.webm" >}}
 
 - Login to FortiCloud: https://support.fortinet.com
 - After logging in, select: Services -> Show More -> FortiCNP
