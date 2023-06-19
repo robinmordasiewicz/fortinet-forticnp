@@ -84,8 +84,6 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
           for i in "${myarray[@]}"; do
             echo "Value: ${i}"
             echo "Value: ${i%.*}"
@@ -101,12 +99,13 @@ jobs:
             gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
             rm -rf tmp/
           done
-      - name: Commit new files
+      - name: Add files to Git commit
         working-directory: ./content
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
           for i in "${myarray[@]}"; do
+            echo "git add \"${i%.*}.gif\""
             git add "${i%.*}.gif"
           done
       - name: Commit new gif
@@ -115,6 +114,8 @@ jobs:
           pwd
           git status
           ls -al
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           git diff-index HEAD
           git diff-index --quiet HEAD || git commit -m 'updates' && git push origin main
           git commit -m 'updates' && git push origin main
