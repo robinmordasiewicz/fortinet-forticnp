@@ -95,7 +95,9 @@ jobs:
             mkdir tmp
             ffmpeg -i tmpout2.mov tmp/frame%04d.png
             rm tmpout2.mov
-            git rm "${i%.*}.gif"
+            if [[ -f "${i%.*}.gif" ]]; then
+              git rm "${i%.*}.gif"
+            fi
             gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
             rm -rf tmp/
           done
