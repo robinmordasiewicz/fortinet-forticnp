@@ -109,7 +109,6 @@ jobs:
           done
       - name: Commit new gif
         working-directory: ./content
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           pwd
           git status
