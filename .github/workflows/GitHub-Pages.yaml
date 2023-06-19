@@ -94,7 +94,10 @@ jobs:
             ffmpeg -i tmpout2.mov tmp/frame%04d.png
             rm tmpout2.mov
             if [[ -f "${i%.*}.gif" ]]; then
+              git config user.name "GitHub Actions Bot"
+              git config user.email "<>"
               git rm "${i%.*}.gif"
+              git commit -m 'updates' && git push origin main
             fi
             gifski --fps 10 --width 960 --repeat -1 -o ${i%.*}.gif tmp/frame*.png
             rm -rf tmp/
