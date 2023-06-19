@@ -108,20 +108,15 @@ jobs:
         run: |
           IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
           for i in "${myarray[@]}"; do
-            echo "git add -f \"${i%.*}.gif\""
             git add -f "${i%.*}.gif"
           done
       - name: Commit new gif
         working-directory: ./content
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          pwd
-          git status
-          ls -al
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git diff-index HEAD
           git diff-index --quiet HEAD || git commit -m 'updates' && git push origin main
-          git commit -m 'updates' && git push origin main
       - name: Setup Github Pages
         id: pages
         uses: actions/configure-pages@v3
