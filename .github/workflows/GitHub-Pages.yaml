@@ -86,6 +86,9 @@ jobs:
         with:
           workload_identity_provider: '${{ vars.WORKLOAD_IDENTITY_PROVIDER }}'
           service_account: '${{ vars.SERVICE_ACCOUNT }}'
+      - name: 'Use gcloud CLI'
+        if: steps.changed-ssml-files.outputs.any_changed == 'true'
+        run: 'gcloud info'
 
       - name: convert .ssml to .wav
         working-directory: ./content
