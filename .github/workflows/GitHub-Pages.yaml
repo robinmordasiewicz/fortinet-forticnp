@@ -66,7 +66,7 @@ jobs:
       - name: Copy Discussion Config
         run: cp content/params.toml config/_default/params.toml
       - name: Get all changed .ssml
-        id: changed-files-specific
+        id: changed-ssml-files
         uses: tj-actions/changed-files@v36
         with:
           path: ./content
@@ -75,12 +75,12 @@ jobs:
             **.ssml
 
       - name: 'Set up Cloud SDK'
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-ssml-files.outputs.any_changed == 'true'
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
           version: '>= 363.0.0'
       - name: gcloud auth
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-ssml-files.outputs.any_changed == 'true'
         id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
@@ -89,9 +89,9 @@ jobs:
 
       - name: convert .ssml to .wav
         working-directory: ./content
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-ssml-files.outputs.any_changed == 'true'
         run: |
-          IFS="," read -a myarray <<< ${{ steps.changed-files-specific.outputs.all_changed_files }}
+          IFS="," read -a myarray <<< ${{ steps.changed-ssml-files.outputs.all_changed_files }}
           for i in "${myarray[@]}"; do
             echo ""
             echo "Value: ${i}"
