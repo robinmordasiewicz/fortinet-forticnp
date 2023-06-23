@@ -1,4 +1,4 @@
-name: content
+name: webhook
 
 on:
   workflow_call:
@@ -39,6 +39,7 @@ jobs:
     - name: Deploy Stage
       uses: actions/github-script@v5
       with:
+        github-token: ${{ secrets.GHA_WORKFLOW_TRIGGER }}
         script: |
           await github.rest.actions.createWorkflowDispatch({
             'robinmordasiewicz',
