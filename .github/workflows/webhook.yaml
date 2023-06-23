@@ -34,15 +34,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy Stage
-      uses: actions/github-script@v5
+    - name: Trigger Workflow
+      uses: actions/github-script@v6
       with:
-        github-token: ${{ secrets.GHA_WORKFLOW_TRIGGER }}
         script: |
-          await github.rest.actions.createWorkflowDispatch({
-            'robinmordasiewicz',
-            'fortinet-hugo-theme',
-            'workflows/content.yaml',
-            'main'
-          });
-
+          github.rest.actions.createWorkflowDispatch({
+            owner: "robinmordasiewicz",
+            repo: "fortinet-hugo-theme",
+            workflow_id: 'content.yaml',
+            ref: 'main',
+          })
