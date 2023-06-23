@@ -90,6 +90,7 @@ jobs:
             echo "Value: ${i%.*}"
             ffmpeg -y -i ${i} -filter:v fps=10 tmpout.mov
             ffmpeg -y -i tmpout.mov -filter_complex "[0]pad=w=4+iw:h=4+ih:x=2:y=2:color=black" tmpout2.mov
+            sed -e "/INSERTSSML/r ${i%.*}.ssml" -e "/INSERTSSML/d" ../text-to-speech.json > ${i%.*}.json
             rm tmpout.mov
             if [[ -f "${i%.*}.webm" ]]; then
               git config user.name "GitHub Actions Bot"
