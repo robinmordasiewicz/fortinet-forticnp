@@ -105,6 +105,11 @@ jobs:
             sed 's|audioContent| |' | tr -d '\n ":{},' > tmp.txt && \
             base64 -i tmp.txt --decode > ${i%.*}.wav && \
             rm tmp.txt ${i%.*}.json
+            if [[ -f "${i%.*}.wav" ]]; then
+              git rm "${i%.*}.wav"
+              git commit -m 'updates' && git push origin main
+            fi
+            git add -f "${i%.*}.wav"
           done
 
       - name: Get all changed .mov
