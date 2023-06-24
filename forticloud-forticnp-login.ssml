@@ -5,11 +5,4 @@
   <s>Click "Show More".</s><break time="1s"/>
   <s>Then click Forti<say-as interpret-as="characters">CNP</say-as>, and the Forti<say-as interpret-as="characters">CNP</say-as>portal will load.</s><break time="4s"/>
   <s>Once the Forti<say-as interpret-as="characters">CNP</say-as> portal loads, a dashboard is presented to the administrator.</s>
-     <s>
-      You say
-<phoneme alphabet="ipa" ph="təˈmeɪtoʊ">tomato</phoneme>, and I say
-<phoneme alphabet="ipa" ph="təˈmɑːtəʊ">tomato</phoneme>
-   </s>
-     <phoneme alphabet="ipa" ph="ˌmænɪˈtoʊbə">manitoba</phoneme>
-  <phoneme alphabet="x-sampa" ph='m@"hA:g@%ni:'>mahogany</phoneme>
 </speak>
