@@ -8,5 +8,7 @@ archetype="home"
 
 {{< video src="forticloud-forticnp-login.webm" >}}
 
+{{% button href="https://gohugo.io/" color="fuchsia" icon="fab fa-hackerrank" %}}Get **Hugo**{{% /button %}}
+
 - Login to FortiCloud: https://support.fortinet.com
 - After logging in, select: Services -> Show More -> FortiCNP
