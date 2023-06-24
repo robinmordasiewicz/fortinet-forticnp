@@ -6,5 +6,5 @@ archetype="home"
 
 {{< video src="forticloud-forticnp-login.webm" >}}
 
-- {{% button href="https://support.fortinet.com" color="blue" icon="fab fa-hackerrank" %}}FortiCloud **Login**{{% /button %}}
+- {{% button href="https://support.fortinet.com" color="blue" icon="fa-solid fa-lock-keyhole" %}}Login Now{{% /button %}}
 - After logging in, select: Services -> Show More -> FortiCNP
